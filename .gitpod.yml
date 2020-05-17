@@ -1,6 +1,6 @@
 image:
   file: Dockerfile
 tasks:
-  - command: . .bashrc && git clone https://github.com/google/protobuf && ./autgen.sh && configure --prefix=$HOME && make -j 48 && make install
-  - command: . .bashrc && git clone https://github.com/google/clif && ./INSTALL.sh
-  - command: . .bashrc && git clone https://github.com/google/nucleus && ./install.sh
+  - command: . .bashrc && git clone https://github.com/google/protobuf && cd protobuf && ./autgen.sh && configure --prefix=$HOME && make -j 48 && make install
+  - command: . .bashrc && git clone https://github.com/google/clif && cd clif && ./INSTALL.sh
+  - command: . .bashrc && git clone https://github.com/google/nucleus && cd nucleus && ./install.sh
