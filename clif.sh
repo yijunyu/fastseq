@@ -101,8 +101,8 @@ cd llvm
 git checkout $(git svn find-rev r307315)
 cd tools
 #svn co https://llvm.org/svn/llvm-project/cfe/trunk@307315 clang
-git clone https://github.com/llvm-mirror/clang
-cd clang
+git clone https://github.com/llvm-mirror/cfe
+cd cfe
 git checkout $(git svn find-rev r307315)
 ln -s -f -n "$CLIFSRC_DIR/clif" clif
 
@@ -119,7 +119,7 @@ cmake -DCMAKE_INSTALL_PREFIX="$CLIF_VIRTUALENV/clang" \
       -DLLVM_BUILD_DOCS=false \
       -DLLVM_TARGETS_TO_BUILD=X86 \
       "${CMAKE_G_FLAGS[@]}" "$LLVM_DIR/llvm"
-"$MAKE_OR_NINJA" "${MAKE_PARALLELISM[@]}" # clif-matcher clif_python_utils_proto_util
+"$MAKE_OR_NINJA" "${MAKE_PARALLELISM[@]}" clif-matcher clif_python_utils_proto_util
 "$MAKE_OR_NINJA" "${MAKE_INSTALL_PARALLELISM[@]}" install
 
 # Get back to the CLIF Python directory and have pip run setup.py.
