@@ -18,7 +18,7 @@
 
 set -x -e
 
-INSTALL_DIR="$HOME/opt"
+INSTALL_DIR="$HOME"
 CLIFSRC_DIR="$PWD"
 LLVM_DIR="$CLIFSRC_DIR/../clif_backend"
 BUILD_DIR="$LLVM_DIR/build_matcher"
@@ -80,8 +80,8 @@ which "$PYTHON"
 
 # Create a virtual environment for the pyclif installation.
 
-CLIF_VIRTUALENV="$INSTALL_DIR"/clif
-CLIF_PIP="$CLIF_VIRTUALENV/bin/pip"
+CLIF_VIRTUALENV="$INSTALL_DIR"
+CLIF_PIP=pip
 # virtualenv -p "$PYTHON" "$CLIF_VIRTUALENV"
 # Older pip and setuptools can fail.
 # 
