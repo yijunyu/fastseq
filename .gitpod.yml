@@ -2,5 +2,5 @@
 #  file: Dockerfile
 tasks:
 #  - command: . .bashrc && git clone https://github.com/google/protobuf ../protobuf && cd ../protobuf && ./autogen.sh && ./configure --prefix=$HOME && make -j 48 && make install
-  - command: . .bashrc && cat xa* | tar xvfj - && git clone https://github.com/google/clif ../clif && cp clif.sh ../clif/INSTALL.sh && cd ../clif && ./INSTALL.sh
+  - command: . .bashrc && cd ~/.pyenv/versions/3.8.2 && cat /workspace/fastseq/xa* | tar xvfj - && cd /workspace/fastseq && git clone https://github.com/google/clif ../clif && cp clif.sh ../clif/INSTALL.sh && cd ../clif && ./INSTALL.sh
   - command: . .bashrc && git clone https://github.com/google/nucleus ../nucleus && cd ../nucleus && ./install.sh
