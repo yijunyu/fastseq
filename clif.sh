@@ -20,7 +20,7 @@ set -x -e
 
 INSTALL_DIR="$HOME"
 CLIFSRC_DIR="$PWD"
-LLVM_DIR="$CLIFSRC_DIR/../clif_backend"
+LLVM_DIR="$CLIFSRC_DIR/../clif_backend/llvm"
 BUILD_DIR="$LLVM_DIR/build_matcher"
 
 # Ensure CMake is installed (needs 3.5+)
@@ -93,19 +93,19 @@ CLIF_PIP=pip
 
 # Download, build and install LLVM and Clang (needs a specific revision).
 
-mkdir -p "$LLVM_DIR"
-cd "$LLVM_DIR"
-if [ ! -f llvm ]; then
+if [ ! -d $LLVM_DIR ]; then
+	mkdir -p "$LLVM_DIR"
+	cd "$LLVM_DIR/.."
 #	svn co https://llvm.org/svn/llvm-project/llvm/trunk@307315 llvm
 	git clone https://github.com/llvm/llvm-project llvm
 	cd llvm
 	# git log | grep -B40 307315
 	git checkout 1cda1d76b110dca737d9c3b8dafe27bab9adbb04
-	cd -
 fi
-cd llvm/tools
-if [ ! -f clang ]; then
-	svn co https://llvm.org/svn/llvm-project/cfe/trunk@307315 clang
+cd $LLVM_DIR/llvm/tools
+if [ ! -d clang ]; then
+	#svn co https://llvm.org/svn/llvm-project/cfe/trunk@307315 clang
+	ln -sf ../../clang .
 fi
 ln -s -f -n "$CLIFSRC_DIR/clif" clif
 
