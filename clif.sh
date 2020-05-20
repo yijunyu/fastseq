@@ -95,9 +95,23 @@ CLIF_PIP=pip
 
 mkdir -p "$LLVM_DIR"
 cd "$LLVM_DIR"
-svn co https://llvm.org/svn/llvm-project/llvm/trunk@307315 llvm
+if [ -f llvm ]; then
+	cd llvm
+	svn cleanup
+	svn update
+	cd -
+else
+	svn co https://llvm.org/svn/llvm-project/llvm/trunk@307315 llvm
+fi
 cd llvm/tools
-svn co https://llvm.org/svn/llvm-project/cfe/trunk@307315 clang
+if [ -f clang ]; then
+	cd clang
+	svn cleanup
+	svn update
+	cd -
+else
+	svn co https://llvm.org/svn/llvm-project/cfe/trunk@307315 clang
+fi
 ln -s -f -n "$CLIFSRC_DIR/clif" clif
 
 # Build and install the CLIF backend.  Our backend is part of the llvm build.
