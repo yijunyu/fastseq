@@ -95,21 +95,16 @@ CLIF_PIP=pip
 
 mkdir -p "$LLVM_DIR"
 cd "$LLVM_DIR"
-if [ -f llvm ]; then
+if [ ! -f llvm ]; then
+#	svn co https://llvm.org/svn/llvm-project/llvm/trunk@307315 llvm
+	git clone https://github.com/llvm/llvm-project llvm
 	cd llvm
-	svn cleanup
-	svn update
+	# git log | grep -B40 307315
+	git checkout 1cda1d76b110dca737d9c3b8dafe27bab9adbb04
 	cd -
-else
-	svn co https://llvm.org/svn/llvm-project/llvm/trunk@307315 llvm
 fi
 cd llvm/tools
-if [ -f clang ]; then
-	cd clang
-	svn cleanup
-	svn update
-	cd -
-else
+if [ ! -f clang ]; then
 	svn co https://llvm.org/svn/llvm-project/cfe/trunk@307315 clang
 fi
 ln -s -f -n "$CLIFSRC_DIR/clif" clif
