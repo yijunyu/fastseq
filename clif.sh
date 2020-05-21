@@ -119,6 +119,7 @@ cd "$BUILD_DIR"
 cmake -DCMAKE_INSTALL_PREFIX="$CLIF_VIRTUALENV/clang" \
       -DCMAKE_PREFIX_PATH="/home/gitpod/.pyenv/versions/3.8.2" \
       -DGOOGLE_PROTOBUF_INCLUDE_DIRS="/home/gitpod/.pyenv/versions/3.8.2/include" \
+      -DGOOGLE_PROTOBUF_LIBRARY_DIRS="/home/gitpod/.pyenv/versions/3.8.2/include" \
       -DLLVM_INSTALL_TOOLCHAIN_ONLY=true \
       -DCMAKE_BUILD_TYPE=Release \
       -DLLVM_BUILD_DOCS=false \
