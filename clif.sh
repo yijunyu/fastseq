@@ -119,6 +119,8 @@ cd "$BUILD_DIR"
 env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.8.2
 cmake -DCMAKE_INSTALL_PREFIX="$CLIF_VIRTUALENV/clang" \
       -DCMAKE_PREFIX_PATH="/home/gitpod/.pyenv/versions/3.8.2" \
+      -DCMAKE_C_FLAGS="-fPIC" \
+      -DCMAKE_CXX_FLAGS="-fPIC" \
       -DGOOGLE_PROTOBUF_INCLUDE_DIRS="/home/gitpod/.pyenv/versions/3.8.2/include" \
       -DGOOGLE_PROTOBUF_LIBRARY_DIRS="/home/gitpod/.pyenv/versions/3.8.2/lib" \
       -DLLVM_INSTALL_TOOLCHAIN_ONLY=true \
