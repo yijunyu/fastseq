@@ -115,6 +115,7 @@ ln -s -f -n "$CLIFSRC_DIR/clif" clif
 git clone https://github.com/python/cpython /workspace/cpython && cd !$ && git checkout v3.8.2 
 ./configure --prefix=/home/gitpod/.pyenv/versions/3.8.2 --enable-shared && make -j16 && make install
 cp /workspace/cpython/libpython3.8.a /home/gitpod/.pyenv/versions/3.8.2/lib/libpython3.8.a
+sed -i 's/Expected<std::vector<char>> readMem/Expected<std::vector<uint8_t>> readMem/g' workspace/clif_backend/llvm/llvm/include/llvm/ExecutionEngine/Orc/OrcRemoteTargetClient.h
 
 mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR"
