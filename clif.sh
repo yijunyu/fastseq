@@ -129,8 +129,9 @@ cmake -DCMAKE_INSTALL_PREFIX="$CLIF_VIRTUALENV/clang" \
       -DLLVM_TARGETS_TO_BUILD=X86 \
       "${CMAKE_G_FLAGS[@]}" "$LLVM_DIR/llvm"
 #/usr/bin/c++ -fPIC -fPIC -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -pedantic -Wno-long-long -Wno-maybe-uninitialized -Wdelete-non-virtual-dtor -Wno-comment -ffunction-sections -fdata-sections -O3 -DNDEBUG  -Wl,-z,defs -shared -Wl,-soname,libpyClifRuntime.so -o ../../../lib/libpyClifRuntime.so CMakeFiles/pyClifRuntime.dir/optional.cc.o CMakeFiles/pyClifRuntime.dir/pyproto.cc.o CMakeFiles/pyClifRuntime.dir/runtime.cc.o CMakeFiles/pyClifRuntime.dir/slots.cc.o CMakeFiles/pyClifRuntime.dir/types.cc.o   -L/home/gitpod/.pyenv/versions/3.8.2/lib  -Wl,-rpath,/home/gitpod/.pyenv/versions/3.8.2/lib -lprotobuf /home/gitpod/.pyenv/versions/3.8.2/lib/libpython3.8.a -pthread -lutil -lpthread -ldl
-"$MAKE_OR_NINJA" "${MAKE_PARALLELISM[@]}" -j 16 clif-matcher clif_python_utils_proto_util
-"$MAKE_OR_NINJA" "${MAKE_INSTALL_PARALLELISM[@]}" install
+#"$MAKE_OR_NINJA" "${MAKE_PARALLELISM[@]}" -j 16 clif-matcher clif_python_utils_proto_util
+#"$MAKE_OR_NINJA" "${MAKE_PARALLELISM[@]}" -j 16 clif_python_utils_proto_util
+#"$MAKE_OR_NINJA" "${MAKE_INSTALL_PARALLELISM[@]}" install
 
 # Get back to the CLIF Python directory and have pip run setup.py.
 
