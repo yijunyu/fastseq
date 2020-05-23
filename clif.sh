@@ -130,6 +130,7 @@ cmake -DCMAKE_INSTALL_PREFIX="$CLIF_VIRTUALENV/clang" \
       -DLLVM_BUILD_DOCS=false \
       -DLLVM_TARGETS_TO_BUILD=X86 \
       "${CMAKE_G_FLAGS[@]}" "$LLVM_DIR/llvm"
+pip install protobuf pyparsing
 "$MAKE_OR_NINJA" "${MAKE_PARALLELISM[@]}" -j 16 clif-matcher clif_python_utils_proto_util
 "$MAKE_OR_NINJA" "${MAKE_PARALLELISM[@]}" -j 16 clif_python_utils_proto_util
 "$MAKE_OR_NINJA" "${MAKE_INSTALL_PARALLELISM[@]}" install
