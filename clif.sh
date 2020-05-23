@@ -112,18 +112,19 @@ ln -s -f -n "$CLIFSRC_DIR/clif" clif
 # Build and install the CLIF backend.  Our backend is part of the llvm build.
 # NOTE: To speed up, we build only for X86. If you need it for a different
 # arch, change it to your arch, or just remove the =X86 line below.
-git clone https://github.com/python/cpython /workspace/cpython && cd !$ && git checkout v3.8.2 
-./configure --prefix=/home/gitpod/.pyenv/versions/3.8.2 --enable-shared && make -j16 && make install
-cp /workspace/cpython/libpython3.8.a /home/gitpod/.pyenv/versions/3.8.2/lib/libpython3.8.a
+pyenv install 3.6.0
+git clone https://github.com/python/cpython /workspace/cpython && cd !$ && git checkout v3.6.0 
+./configure --prefix=/home/gitpod/.pyenv/versions/3.6.0 --enable-shared && make -j16 && make install
+cp /workspace/cpython/libpython3.8.a /home/gitpod/.pyenv/versions/3.6.0/lib/libpython3.8.a
 cp /workspace/fastseq/proto_util.cc /workspace/clif_backend/llvm/build_matcher/tools/clif/python/utils/proto_util.cc
 mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR"
 cmake -DCMAKE_INSTALL_PREFIX="$CLIF_VIRTUALENV/clang" \
-      -DCMAKE_PREFIX_PATH="/home/gitpod/.pyenv/versions/3.8.2" \
+      -DCMAKE_PREFIX_PATH="/home/gitpod/.pyenv/versions/3.6.0" \
       -DCMAKE_C_FLAGS="-fPIC" \
       -DCMAKE_CXX_FLAGS="-fPIC" \
-      -DGOOGLE_PROTOBUF_INCLUDE_DIRS="/home/gitpod/.pyenv/versions/3.8.2/include" \
-      -DGOOGLE_PROTOBUF_LIBRARY_DIRS="/home/gitpod/.pyenv/versions/3.8.2/lib" \
+      -DGOOGLE_PROTOBUF_INCLUDE_DIRS="/home/gitpod/.pyenv/versions/3.6.0/include" \
+      -DGOOGLE_PROTOBUF_LIBRARY_DIRS="/home/gitpod/.pyenv/versions/3.6.0/lib" \
       -DLLVM_INSTALL_TOOLCHAIN_ONLY=true \
       -DCMAKE_BUILD_TYPE=Release \
       -DLLVM_BUILD_DOCS=false \
@@ -142,7 +143,7 @@ cp "$BUILD_DIR/tools/clif/protos/ast_pb2.py" clif/protos/
 cp "$BUILD_DIR/tools/clif/python/utils/proto_util.cc" clif/python/utils/
 cp "$BUILD_DIR/tools/clif/python/utils/proto_util.h" clif/python/utils/
 cp "$BUILD_DIR/tools/clif/python/utils/proto_util.init.cc" clif/python/utils/
-ln -sf /home/gitpod/.pyenv/versions/3.8.2/include/google cd /home/gitpod/.pyenv/versions/3.8.2/include/python3.8/google
+ln -sf /home/gitpod/.pyenv/versions/3.6.0/include/google cd /home/gitpod/.pyenv/versions/3.6.0/include/python3.8/google
 "$CLIF_PIP" install .
 
 echo "SUCCESS - To use pyclif, run $CLIF_VIRTUALENV/bin/pyclif."
