@@ -1,0 +1,78 @@
+@startuml
+
+package "Examine Species" as species {
+    database "COVID19 virus" as virus
+    database "Human cells" as human
+}
+
+[Genome Sequencer:\n - Illumina] as sequencer
+species --> sequencer
+
+database "Raw Genome Sequences" as raw {
+    (FASTQ) as fastq
+    (FASTA) as fasta
+}
+sequencer --> raw
+
+package "fastseq Parser [WP1]" as parser {
+    [Goby] as goby
+    [Nucleus] as nucleus
+    [fAST] as fast    
+}
+
+database "In memory structures" as memory {
+    (Protobuf) as protobuf
+    (Flatbuffers) as flatbuffers
+}
+raw --> nucleus
+raw --> goby
+raw --> fast: T1.1 fastSeq parser
+nucleus --> protobuf
+goby --> protobuf
+fast --> flatbuffers: T1.2 measure speedup\n & spatial overhead
+
+database "Aligned Genome Sequences" as aligned {
+    (SAM) as sam
+    (BAM) as bam
+}
+
+database "Reference Genome Sequences" as reference {
+    (SAM) as samRef
+    (BAM) as bamRef
+}
+
+package "fastSeq Classifier (WP2)" as classifier {
+    [Goby Alignment] as gobyAlign
+    [Nucleus Alignment:\n - CNN] as classifier1
+    [fastSeq Alignment:\n - TBCNN \n - GGNN] as classifier2    
+}
+protobuf --> gobyAlign
+protobuf --> classifier1
+flatbuffers --> classifier2: T1.3 measure speedup\n & memory overhead
+
+database "Literature" as literature {
+    [User Cases\n - COVID19\n - Protein folding\n - Gene expression] as explainable
+}
+
+package "fastSeq Explainer (WP3)" as explainer {
+    [Pattern Recognisers:\n - MDP] as mdp
+}
+actor "Bioinformatics Researcher" as researcher
+
+literature --> researcher: T3.1 survey literature
+researcher --> explainer: T3.2 specify\n use\n cases
+
+database "Structures:\n - proteins\n - gene expressions" as structures
+
+researcher --> structures: T2.1 annotate\n structures
+structures --> classifier2: T2.2 structural\n learning
+researcher --> reference: T2.3 select references
+reference --> biologist: T2.3 evaluate\n accuracy
+aligned --> biologist: T2.3 evaluate\n accuracy
+
+classifier --> aligned
+
+aligned --> explainer
+explainer --> biologist: T3.3 evaluate\n recognisability
+
+@enduml
