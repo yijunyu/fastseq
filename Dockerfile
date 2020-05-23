@@ -7,5 +7,6 @@ RUN apt-get install -y python3-dev python3-pip python3-tk python3-lxml python3-s
 RUN apt-get install -y python-dev python-pip
 RUN apt-get install -y ocaml opam
 RUN apt-get install -y graphviz
+RUN apt-get install -y texlive
 RUN usermod -a -G root gitpod
 USER gitpod
