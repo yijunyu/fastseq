@@ -113,8 +113,9 @@ ln -s -f -n "$CLIFSRC_DIR/clif" clif
 # NOTE: To speed up, we build only for X86. If you need it for a different
 # arch, change it to your arch, or just remove the =X86 line below.
 pyenv install 3.6.0
-git clone https://github.com/python/cpython /workspace/cpython && cd !$ && git checkout v3.6.0 
-./configure --prefix=/home/gitpod/.pyenv/versions/3.6.0 --enable-shared && make -j16 && make install
+git clone https://github.com/python/cpython /workspace/cpython && cd !$ 
+git checkout v3.6.0 && ./configure --prefix=/home/gitpod/.pyenv/versions/3.6.0 --enable-shared --enable-optmizations && make -j16 && make install
+#git checkout v2.7.17 && ./configure --prefix=/home/gitpod/.pyenv/versions/2.7.17 --enable-shared --enable-optmizations && make -j16 && make install
 cp /workspace/cpython/libpython3.8.a /home/gitpod/.pyenv/versions/3.6.0/lib/libpython3.8.a
 cp /workspace/fastseq/proto_util.cc /workspace/clif_backend/llvm/build_matcher/tools/clif/python/utils/proto_util.cc
 mkdir -p "$BUILD_DIR"
