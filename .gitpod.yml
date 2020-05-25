@@ -2,7 +2,7 @@ image:
   file: Dockerfile
 tasks:
   - init: . .bashrc
-  - command: ./bin/install-graphviz.sh && ./bin/install-nucleus.sh
+  - command: ./bin/install-nucleus.sh
 github:
   prebuilds:
     master: true
