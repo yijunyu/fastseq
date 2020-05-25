@@ -21,6 +21,7 @@ RUN cd /workspace \
  && rm bazel-0.26.1-installer-linux-x86_64.sh
 RUN cd /workspace \
  && git clone https://github.com/google/nucleus
+RUN pyenv global 3.8.2
 RUN cd /workspace/nucleus \
  && bazel build -c opt "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3" nucleus/...
 RUN cd /workspace/nucleus \
