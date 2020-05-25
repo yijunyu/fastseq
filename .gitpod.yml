@@ -1,2 +1,4 @@
+image:
+  file: Dockerfile
 tasks:
    - command: . .bashrc && cd /workspace && tar xvfj /workspace/fastseq/pyclif.tar.bz2 && patch /workspace/.pip-modules/lib/python3.8/site-packages/clif/protos/ast_pb2.py < /workspace/fastseq/ast_pb2.py.patch && patch /workspace/.pip-modules/lib/python3.8/site-packages/clif/python/gen.py < /workspace/fastseq/gen.py.patch && git clone https://github.com/google/nucleus nucleus && cd nucleus && ./install.sh
