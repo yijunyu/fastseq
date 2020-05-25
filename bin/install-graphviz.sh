@@ -14,6 +14,4 @@ command -v dot >/dev/null 2>&1 || {
 	else
 		tar xvfj bin/graphviz.tar.bz2 -C /workspace
 	fi
-	echo export PATH='"/workspace/graphviz/bin:$PATH"' >> .bashrc
-	. .bashrc
 }
