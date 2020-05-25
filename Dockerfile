@@ -21,10 +21,10 @@ RUN cd /workspace \
  && git clone https://github.com/google/nucleus
 RUN pip3 install numpy
 ENV CLIF_FLAGS "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
-RUN cd /workspace/nucleus \
- && bazel build -c opt ${CLIF_FLAGS} nucleus/...
-RUN cd /workspace/nucleus \
- && RUN bazel build :licenses_zip
-RUN chmod -R gitpod:gitpod /root/nucleus
-RUN apt-get -y install graphviz
+# RUN cd /workspace/nucleus \
+#  && bazel build -c opt ${CLIF_FLAGS} nucleus/...
+# RUN cd /workspace/nucleus \
+#  && RUN bazel build :licenses_zip
+# RUN chmod -R gitpod:gitpod /root/nucleus
+# RUN apt-get -y install graphviz
 # USER gitpod
