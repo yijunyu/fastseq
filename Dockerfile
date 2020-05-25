@@ -20,8 +20,8 @@ RUN cd /root \
  && chmod +x bazel-*.sh \
  && ./bazel-"${NUCLEUS_BAZEL_VERSION}"-installer-linux-x86_64.sh \
  && rm bazel-"${NUCLEUS_BAZEL_VERSION}"-installer-linux-x86_64.sh
-# RUN pip3 install numpy
-# RUN cd /root \
+RUN mv /root/tensorflow /workspace/tensorflow
+# RUN cd /workspace \
 #  && git clone https://github.com/google/nucleus \
 #  && cd nucleus \
 #  && bazel build -c opt "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3" nucleus/...
