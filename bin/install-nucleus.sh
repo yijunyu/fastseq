@@ -18,3 +18,6 @@ if [ ! -d tensorflow ]; then
 fi
 bin/install-bazel.sh
 cd nucleus-0.5.1
+pip3 install numpy
+CLIF_FLAGS="--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
+bazel build -c opt ${CLIF_FLAGS} nucleus/...
