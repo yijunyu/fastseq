@@ -15,16 +15,8 @@ RUN mkdir -p /workspace \
 RUN cd /workspace \
  && curl -L -O https://github.com/bazelbuild/bazel/releases/download/0.26.1/bazel-0.26.1-installer-linux-x86_64.sh \
  && chmod +x bazel-*.sh \
- && ./bazel-0.26.1-installer-linux-x86_64.sh \
+ && ./bazel-0.26.1-installer-linux-x86_64.sh --prefix=/usr/local \
  && rm bazel-0.26.1-installer-linux-x86_64.sh
-RUN cd /workspace \
- && git clone https://github.com/google/nucleus
 RUN pip3 install numpy
-ENV CLIF_FLAGS "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
-# RUN cd /workspace/nucleus \
-#  && bazel build -c opt ${CLIF_FLAGS} nucleus/...
-# RUN cd /workspace/nucleus \
-#  && RUN bazel build :licenses_zip
-# RUN chmod -R gitpod:gitpod /root/nucleus
-# RUN apt-get -y install graphviz
+RUN apt-get -y install graphviz
 # USER gitpod
