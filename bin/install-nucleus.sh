@@ -16,4 +16,5 @@ if [ ! -d tensorflow ]; then
 	NUCLEUS_TENSORFLOW_VERSION="2.0.0"
 	(git clone https://github.com/tensorflow/tensorflow && cd tensorflow && git checkout v${NUCLEUS_TENSORFLOW_VERSION} && ./configure)
 fi
+bin/install-bazel.sh
 cd nucleus-0.5.1
