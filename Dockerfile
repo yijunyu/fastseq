@@ -19,11 +19,10 @@ RUN cd /workspace \
  && rm bazel-0.26.1-installer-linux-x86_64.sh
 RUN cd /workspace \
  && git clone https://github.com/google/nucleus
-RUN pyenv global 3.8.2
 RUN pip install numpy
-ENV TF_OPT "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
+ENV CLIF_FLAGS "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
 RUN cd /workspace/nucleus \
- && bazel build -c opt ${TF_OPT} nucleus/...
+ && bazel build -c opt ${CLIF_FLAGS} nucleus/...
 RUN cd /workspace/nucleus \
  && RUN bazel build :licenses_zip
 RUN chmod -R gitpod:gitpod /root/nucleus
