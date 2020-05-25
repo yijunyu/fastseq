@@ -1,5 +1,6 @@
-FROM gitpod/workspace-full
-USER root
+# FROM gitpod/workspace-full
+# USER root
+FROM ubuntu:16.04
 RUN apt-get -y update
 RUN apt-get -y install pkg-config zip g++ zlib1g-dev unzip curl git lsb-release
 RUN apt-get -y install libssl-dev libcurl4-openssl-dev liblz-dev libbz2-dev liblzma-dev
@@ -30,4 +31,4 @@ RUN cd /workspace/nucleus \
  && RUN bazel build :licenses_zip
 RUN chmod -R gitpod:gitpod /root/nucleus
 RUN apt-get -y install graphviz
-USER gitpod
+# USER gitpod
