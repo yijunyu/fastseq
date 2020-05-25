@@ -1,10 +1,22 @@
 FROM gitpod/workspace-full
 USER root
-RUN apt-get install -y graphviz
-RUN cd /root \
- && git clone https://github.com/google/nucleus
-RUN sed -i -e "s/16/18/g" /root/nucleus/install.sh
+RUN apt-get -y update
+RUN apt-get -y install graphviz
+RUN apt-get -y install pkg-config zip g++ zlib1g-dev unzip curl git lsb-release
+RUN apt-get -y libssl-dev libcurl4-openssl-dev liblz-dev libbz2-dev liblzma-dev
+RUN apt-get -y install python-dev python3-pip python-wheel python3-setuptools
+RUN curl "https://storage.googleapis.com/deepvariant/packages/oss_clif/oss_clif.ubuntu-18.latest.tgz" > /tmp/oss_clif.tgz \
+ && cd / \
+ && tar xzf /tmp/oss_clif.tgz \
+ && rm -f /tmp/oss_clif.tgz
+ENV NUCLEUS_TENSORFLOW_VERSION "2.0.0"
+RUN git clone https://github.com/tensorflow/tensorflow \
+ && git checkout v${NUCLEUS_TENSORFLOW_VERSION} \
+ && echo | ./configure
+RUN git clone https://github.com/google/nucleus
 RUN cd /root/nucleus \
- && ./install.sh
+ && bazel build -c opt "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3" nucleus/...
+RUN cd /root/nucleus \
+ && RUN bazel build :licenses_zip
 RUN chmod -R gitpod:gitpod /root/nucleus
 USER gitpod
