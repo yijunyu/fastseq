@@ -1,5 +1,5 @@
 command -v dot >/dev/null 2>&1 || {
-	./install-flex.sh
+	bin/install-flex.sh
 	if [ ! -f bin/graphviz.tar.bz2 ]; then
 		if [ ! -d graphviz-2.44.0 ]; then
 			wget https://gitlab.com/graphviz/graphviz/-/archive/2.44.0/graphviz-2.44.0.tar.bz2
