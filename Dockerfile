@@ -1,7 +1,6 @@
 FROM gitpod/workspace-full
 USER root
 RUN apt-get -y update
-RUN apt-get -y install graphviz
 RUN apt-get -y install pkg-config zip g++ zlib1g-dev unzip curl git lsb-release
 RUN apt-get -y libssl-dev libcurl4-openssl-dev liblz-dev libbz2-dev liblzma-dev
 RUN apt-get -y install python-dev python3-pip python-wheel python3-setuptools
@@ -19,4 +18,5 @@ RUN cd /root/nucleus \
 RUN cd /root/nucleus \
  && RUN bazel build :licenses_zip
 RUN chmod -R gitpod:gitpod /root/nucleus
+RUN apt-get -y install graphviz
 USER gitpod
