@@ -6,7 +6,7 @@ tasks:
 #  - command: . .bashrc && git clone https://github.com/python/cpython ../cpython && cd ../cpython && git checkout v3.8.2 && ./configure --prefix=/home/gitpod/.pyenv/versions/3.8.2 --enable-shared && make -j16 && make install
 #  - command: . .bashrc && cd ~/.pyenv/versions/3.8.2 && cat /workspace/fastseq/xa* | tar xvfj - && cd /workspace/fastseq && if [ ! -d ../clif ]; then git clone https://github.com/google/clif ../clif; fi && cp clif.sh ../clif/INSTALL.sh && cd ../clif && ./INSTALL.sh
 #  - command: . .bashrc && cd ~/.pyenv/versions/3.8.2 && cat /workspace/fastseq/xa* | tar xvfj - && cd /workspace/fastseq && if [ ! -d ../clif ]; then git clone https://github.com/yijunyu/clif ../clif; fi && cp clif.sh ../clif/INSTALL.sh && cd ../clif && ./INSTALL.sh
-    - command: . .bashrc && cd /workspace && tar xvfj /workspace/fastseq/clang.tar.bz2 && tar xvfj /workspace/fastseq/pyclif.tar.bz2 && cp ast_pb2.py /workspace/.pip-modules/lib/python3.8/site-packages/clif/protos/ast_pb2.py && cp /workspace/fastseq/gen.py /workspace/.pip-modules/lib/python3.8/site-packages/clif/python/gen.py && git clone https://github.com/google/nucleus ../nucleus && cd ../nucleus && ./install.sh
+    - command: . .bashrc && cd /workspace && tar xvfj /workspace/fastseq/clang.tar.bz2 && tar xvfj /workspace/fastseq/pyclif.tar.bz2 && cp /workspace/fastseq/ast_pb2.py /workspace/.pip-modules/lib/python3.8/site-packages/clif/protos/ast_pb2.py && cp /workspace/fastseq/gen.py /workspace/.pip-modules/lib/python3.8/site-packages/clif/python/gen.py && git clone https://github.com/google/nucleus ../nucleus && cd ../nucleus && ./install.sh
 vscode:
   extensions:
     - jebbs.plantuml@2.13.9:Kh1501AVTKuUtjU0w5lOEQ==
