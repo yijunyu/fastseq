@@ -1,3 +1,0 @@
-Expected<std::vector<char>> readMem(char *Dst, JITTargetAddress Src,
-=>
-Expected<std::vector<uint8_t>> readMem(char *Dst, JITTargetAddress Src,
