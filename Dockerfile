@@ -20,13 +20,13 @@ RUN cd /root \
  && chmod +x bazel-*.sh \
  && ./bazel-"${NUCLEUS_BAZEL_VERSION}"-installer-linux-x86_64.sh \
  && rm bazel-"${NUCLEUS_BAZEL_VERSION}"-installer-linux-x86_64.sh
-RUN pip3 install numpy
-RUN cd /root \
- && git clone https://github.com/google/nucleus \
- && cd nucleus \
- && bazel build -c opt "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3" nucleus/...
-RUN cd /root/nucleus \
- && RUN bazel build :licenses_zip
-RUN chmod -R gitpod:gitpod /root/nucleus
-RUN apt-get -y install graphviz
-USER gitpod
+# RUN pip3 install numpy
+# RUN cd /root \
+#  && git clone https://github.com/google/nucleus \
+#  && cd nucleus \
+#  && bazel build -c opt "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3" nucleus/...
+# RUN cd /root/nucleus \
+#  && RUN bazel build :licenses_zip
+# RUN chmod -R gitpod:gitpod /root/nucleus
+# RUN apt-get -y install graphviz
+# USER gitpod
