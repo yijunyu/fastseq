@@ -1,5 +1,7 @@
 command -v protoc >/dev/null 2>&1 || {
-    if [ ! -f /workspace/fastseq/nucleus-0.5.1/usr/local/bin/protoc ]; then
+    if [ -f /workspace/fastseq/bin/protobuf.tar.bz2 ]; then
+        cat /workspace/fastseq/bin/protobuf.tar.bz2 | tar xvfj - -C nucleus-0.5.1
+    elif [ ! -f /workspace/fastseq/nucleus-0.5.1/usr/local/bin/protoc ]; then
         git clone https://github.com/google/protobuf
         cd protobuf
         git checkout v3.6.0

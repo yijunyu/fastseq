@@ -6,7 +6,6 @@ if [ ! -f nucleus-0.5.1/bazel-bin/licenses.zip ]; then
 			wget https://github.com/google/nucleus/archive/0.5.1.tar.gz
 			tar xvfz 0.5.1.tar.gz
 		fi
-		cat /workspace/fastseq/bin/protobuf.tar.bz2 | tar xvfj - -C nucleus-0.5.1
 	fi
 	bin/install-protobuf.sh
     (cd nucleus-0.5.1 && curl "https://storage.googleapis.com/deepvariant/packages/oss_clif/oss_clif.ubuntu-16.latest.tgz" | tar xvfz -)
