@@ -10,6 +10,7 @@ RUN curl "https://storage.googleapis.com/deepvariant/packages/oss_clif/oss_clif.
  && rm -f /tmp/oss_clif.tgz
 ENV NUCLEUS_TENSORFLOW_VERSION "2.0.0"
 RUN git clone https://github.com/tensorflow/tensorflow \
+ && cd tensorflow \
  && git checkout v${NUCLEUS_TENSORFLOW_VERSION} \
  && echo | ./configure
 RUN git clone https://github.com/google/nucleus
