@@ -7,3 +7,4 @@ git commit -am "$@*" && git push
 EOF
 chmod +x /workspace/bin/push
 pyenv global 3.8.2
+export PATH="/workspace/flex/bin:$PATH"
