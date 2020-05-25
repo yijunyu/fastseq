@@ -8,8 +8,9 @@ command -v nucleus >/dev/null 2>&1 || {
 			tar xvfz 0.5.1.tar.gz
 		fi
 		cd nucleus-0.5.1
+        patch install.sh < /workspace/fastseq/bin/install.sh.patch
 		./install.sh 
-		cd /workspace && tar cvfj fastseq/bin/nucleus.tar.bz2 .pipmodules && cd -
+		cd /workspace && tar cvfj fastseq/bin/nucleus.tar.bz2 usr && cd -
 	else
 		tar xvfj bin/nucleus.tar.bz2 -C /workspace
 	fi

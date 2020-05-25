@@ -81,25 +81,10 @@
   concrete colour=blue!85!cyan!40,
   abstract colour=blue!85!cyan!15,
   draw colour=darkgray,
-  [Emergency Response System
-    [User interface, mandatory]
-    [Inform emergency, mandatory
-      [Inform Earthquake]
-      [Inform flood]
-    ]
-    [Display neighbourhood, mandatory
-      [Map
-        [Display danger zone]
-        [Display safe zone]
-        [Display path to safe zone]
-      ]
-      [Textual direction]
-    ]
-    [Shortcut calls, optional
-      [Cops]
-      [Ambulance]
-      [Fireman]
-    ]
+  [fASTseq formats
+    [flat buffers, mandatory]
+    [protobuf, mandatory]
+    [TFRecords, mandatory]
   ]
 \end{forest}
 \end{document}
