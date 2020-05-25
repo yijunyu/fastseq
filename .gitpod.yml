@@ -1,2 +1,2 @@
 tasks:
-   - command: . .bashrc && ./install-graphviz.sh && cd /workspace && tar xvfj /workspace/clif.tar.bz2 && tar xvfj /workspace/fastseq/pyclif.tar.bz2 && patch /workspace/.pip-modules/lib/python3.8/site-packages/clif/protos/ast_pb2.py < /workspace/fastseq/ast_pb2.py.patch && patch /workspace/.pip-modules/lib/python3.8/site-packages/clif/python/gen.py < /workspace/fastseq/gen.py.patch && git clone https://github.com/google/nucleus nucleus && cd nucleus && ./install.sh
+   - command: ./install-graphviz.sh && ./install-clif.sh && ./install-pyclif.sh && . .bashrc && git clone https://github.com/google/nucleus nucleus && cd nucleus && ./install.sh
