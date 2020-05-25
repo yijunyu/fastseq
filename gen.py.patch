@@ -1,0 +1,12 @@
+734c734
+< def IterNext(wrapped_iter, async, postconversion):
+---
+> def IterNext(wrapped_iter, is_async, postconversion):
+738c738
+<   if async:
+---
+>   if is_async:
+742c742
+<   if async:
+---
+>   if is_async:
