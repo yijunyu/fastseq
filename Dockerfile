@@ -17,7 +17,7 @@ RUN cd /root \
 RUN cd /root \
  && git clone https://github.com/google/nucleus \
  && cd nucleus \
- && bazel build -c opt --copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3 nucleus/...
+ && bazel build -c opt "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3" nucleus/...
 RUN cd /root/nucleus \
  && RUN bazel build :licenses_zip
 RUN chmod -R gitpod:gitpod /root/nucleus
