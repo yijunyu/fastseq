@@ -20,7 +20,7 @@ RUN cd /root \
  && chmod +x bazel-*.sh \
  && ./bazel-"${NUCLEUS_BAZEL_VERSION}"-installer-linux-x86_64.sh \
  && rm bazel-"${NUCLEUS_BAZEL_VERSION}"-installer-linux-x86_64.sh
-RUN apt-get -y install python3-numpy
+RUN pip3 install numpy
 RUN cd /root \
  && git clone https://github.com/google/nucleus \
  && cd nucleus \
