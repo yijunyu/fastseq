@@ -17,7 +17,7 @@ sequencer --> raw
 package "fastseq Parser [WP1]" as parser {
     [Goby] as goby
     [Nucleus] as nucleus
-    [fAST] as fast    
+    [fAST] as fast
 }
 
 database "In memory structures" as memory {
@@ -44,7 +44,7 @@ database "Reference Genome Sequences" as reference {
 package "fastSeq Classifier (WP2)" as classifier {
     [Goby Alignment] as gobyAlign
     [Nucleus Alignment:\n - CNN] as classifier1
-    [fastSeq Alignment:\n - TBCNN \n - GGNN] as classifier2    
+    [fastSeq Alignment:\n - TBCNN \n - GGNN] as classifier2
 }
 protobuf --> gobyAlign
 protobuf --> classifier1
