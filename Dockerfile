@@ -5,10 +5,7 @@ RUN apt-get -y update
 RUN apt-get -y install pkg-config zip g++ zlib1g-dev unzip curl git lsb-release
 RUN apt-get -y install libssl-dev libcurl4-openssl-dev liblz-dev libbz2-dev liblzma-dev
 RUN apt-get -y install python3-dev python3-pip python3-wheel python3-setuptools python3-numpy python3-h5py
-RUN curl "https://storage.googleapis.com/deepvariant/packages/oss_clif/oss_clif.ubuntu-18.latest.tgz" > /tmp/oss_clif.tgz \
- && cd / \
- && tar xzf /tmp/oss_clif.tgz \
- && rm -f /tmp/oss_clif.tgz
+RUN curl "https://storage.googleapis.com/deepvariant/packages/oss_clif/oss_clif.ubuntu-16.latest.tgz" | tar xzf -
 RUN mkdir -p /workspace \
  && cd /workspace \
  && git clone https://github.com/tensorflow/tensorflow \
