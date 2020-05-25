@@ -8,11 +8,11 @@ RUN curl "https://storage.googleapis.com/deepvariant/packages/oss_clif/oss_clif.
  && cd / \
  && tar xzf /tmp/oss_clif.tgz \
  && rm -f /tmp/oss_clif.tgz
-ENV NUCLEUS_TENSORFLOW_VERSION "2.0.0"
-RUN cd /workspace \
+RUN mkdir -p /workspace \
+ && cd /workspace \
  && git clone https://github.com/tensorflow/tensorflow \
  && cd tensorflow \
- && git checkout v${NUCLEUS_TENSORFLOW_VERSION} \
+ && git checkout v2.0.0 \
  && echo | ./configure
 RUN cd /workspace \
  && curl -L -O https://github.com/bazelbuild/bazel/releases/download/0.26.1/bazel-0.26.1-installer-linux-x86_64.sh \
