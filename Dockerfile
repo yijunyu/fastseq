@@ -9,13 +9,15 @@ RUN curl "https://storage.googleapis.com/deepvariant/packages/oss_clif/oss_clif.
  && tar xzf /tmp/oss_clif.tgz \
  && rm -f /tmp/oss_clif.tgz
 ENV NUCLEUS_TENSORFLOW_VERSION "2.0.0"
-RUN git clone https://github.com/tensorflow/tensorflow \
+RUN cd /root \
+ && git clone https://github.com/tensorflow/tensorflow \
  && cd tensorflow \
  && git checkout v${NUCLEUS_TENSORFLOW_VERSION} \
  && echo | ./configure
-RUN git clone https://github.com/google/nucleus
-RUN cd /root/nucleus \
- && bazel build -c opt "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3" nucleus/...
+RUN cd /root \
+ && git clone https://github.com/google/nucleus \
+ && cd nucleus \
+ && bazel build -c opt --copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3 nucleus/...
 RUN cd /root/nucleus \
  && RUN bazel build :licenses_zip
 RUN chmod -R gitpod:gitpod /root/nucleus
