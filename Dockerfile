@@ -3,7 +3,7 @@ USER root
 RUN apt-get -y update
 RUN apt-get -y install pkg-config zip g++ zlib1g-dev unzip curl git lsb-release
 RUN apt-get -y install libssl-dev libcurl4-openssl-dev liblz-dev libbz2-dev liblzma-dev
-RUN apt-get -y install python-dev python3-pip python-wheel python3-setuptools
+RUN apt-get -y install python3-dev python3-pip python3-wheel python3-setuptools
 RUN curl "https://storage.googleapis.com/deepvariant/packages/oss_clif/oss_clif.ubuntu-18.latest.tgz" > /tmp/oss_clif.tgz \
  && cd / \
  && tar xzf /tmp/oss_clif.tgz \
