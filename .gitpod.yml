@@ -1,2 +1,2 @@
 tasks:
-   - command: ./install-graphviz.sh && ./install-protobuf.sh && ./install-clif.sh && ./install-pyclif.sh && . .bashrc && git clone https://github.com/google/nucleus nucleus && cd nucleus && ./install.sh
+   - command: ./bin/install-graphviz.sh && ./bin/install-protobuf.sh && ./bin/install-clif.sh && ./bin/install-pyclif.sh && . .bashrc && git clone https://github.com/google/nucleus nucleus && cd nucleus && ./install.sh
