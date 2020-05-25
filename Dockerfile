@@ -18,7 +18,7 @@ ENV NUCLEUS_BAZEL_VERSION "0.26.1"
 RUN cd /root \
  && curl -L -O https://github.com/bazelbuild/bazel/releases/download/"${NUCLEUS_BAZEL_VERSION}"/bazel-"${NUCLEUS_BAZEL_VERSION}"-installer-linux-x86_64.sh \
  && chmod +x bazel-*.sh \
- && ./bazel-"${NUCLEUS_BAZEL_VERSION}"-installer-linux-x86_64.sh --user \
+ && ./bazel-"${NUCLEUS_BAZEL_VERSION}"-installer-linux-x86_64.sh \
  && rm bazel-"${NUCLEUS_BAZEL_VERSION}"-installer-linux-x86_64.sh
 RUN cd /root \
  && git clone https://github.com/google/nucleus \
