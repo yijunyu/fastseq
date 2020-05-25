@@ -12,4 +12,8 @@ if [ ! -f nucleus-0.5.1/bazel-bin/licenses.zip ]; then
 	echo export PATH='"/workspace/fastseq/nucleus-0.5.1/usr/local/clif/bin:$PATH"' >> .bashrc
 	echo export LD_LIBRARY_PATH='"/workspace/fastseq/nucleus-0.5.1/usr/local/lib"' >> .bashrc
 fi
+if [ ! -d tensorflow ]; then
+	NUCLEUS_TENSORFLOW_VERSION="2.0.0"
+	(git clone https://github.com/tensorflow/tensorflow && cd tensorflow && git checkout v${NUCLEUS_TENSORFLOW_VERSION} && ./configure)
+fi
 cd nucleus-0.5.1
