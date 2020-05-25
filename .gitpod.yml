@@ -1,5 +1,2 @@
-image:
-  file: Dockerfile
 tasks:
-#   - command: ./bin/install-graphviz.sh && ./bin/install-nucleus.sh && . .bashrc
-  - command: ./bin/install-graphviz.sh && . .bashrc
+  - command: ./bin/install-graphviz.sh && ./bin/install-nucleus.sh && . .bashrc
