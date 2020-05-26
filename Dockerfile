@@ -24,7 +24,7 @@ RUN cd /work \
  && git checkout v2.0.0 \
  && echo | ./configure \
  && cd .. \
- && git clone https://github.com/google/nucleus
+ && git clone https://github.com/google/nucleus \
  && cd nucleus \
  && bazel build -c opt ${CLIF_FLAGS} nucleus/... \
  && bazel build :licenses_zip
