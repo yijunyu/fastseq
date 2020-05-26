@@ -17,8 +17,11 @@ RUN	curl -L -O https://github.com/bazelbuild/bazel/releases/download/0.26.1/baze
  && ./bazel-0.26.1-installer-linux-x86_64.sh --prefix=/usr/local \
  && rm bazel-0.26.1-installer-linux-x86_64.sh
 
+USER gitpod
+
 ENV CLIF_FLAGS "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
-RUN cd /work \
+RUN mkdir -p /work \
+ && cd /work \
  && git clone https://github.com/tensorflow/tensorflow \
  && cd tensorflow \
  && git checkout v2.0.0 \
@@ -28,6 +31,4 @@ RUN cd /work \
  && cd nucleus \
  && bazel build -c opt ${CLIF_FLAGS} nucleus/... \
  && bazel build :licenses_zip
-
-CMD chmod -R gitpod:gitpod /work
 CMD /bin/bash
