@@ -1,5 +1,5 @@
-bin/install-bazel.sh
-source .bashrc
+# bin/install-bazel.sh
+# source .bashrc
 cd /workspace \
  && git clone https://github.com/tensorflow/tensorflow \
  && cd tensorflow \
