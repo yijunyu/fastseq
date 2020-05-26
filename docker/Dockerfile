@@ -16,6 +16,6 @@ RUN	curl -L -O https://github.com/bazelbuild/bazel/releases/download/0.26.1/baze
  &&	chmod +x bazel-*.sh \
  && ./bazel-0.26.1-installer-linux-x86_64.sh --prefix=/usr/local \
  && rm bazel-0.26.1-installer-linux-x86_64.sh
-
-RUN pip3 install numpy
+RUN apt-get -y install python-pip
+RUN pip install numpy
 CMD /bin/bash
