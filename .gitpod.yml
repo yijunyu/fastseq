@@ -1,5 +1,5 @@
 image:
-  file: Dockerfile
+  file: docker/Dockerfile
 tasks:
   - init: . .bashrc
   - command:  ln -sf /work/tensorflow /workspace/tensorflow && ln -sf /work/nucleus /workspace/nucleus

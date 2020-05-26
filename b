@@ -1,1 +1,1 @@
-docker build -t nucleus .
+docker build -t nucleus docker
