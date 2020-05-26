@@ -1,5 +1,5 @@
 image:
-  file: Dockerfile.build_env
+  file: Dockerfile
 tasks:
   - init: . .bashrc
   - command:  ./bin/install-nucleus.sh
