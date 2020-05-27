@@ -1,20 +1,15 @@
 FROM ubuntu:16.04
-
 RUN apt-get -y update
 RUN apt-get install -y sudo git
-
-# Note: changes to install-prereqs.sh will invalidate the Docker
-# cache, which is the behavior we want.
-# Note: This will put the tensorflow sources at /opt/tensorflow.
-RUN git clone https://github.com/google/nucleus /opt/nucleus
-RUN cd /opt/nucleus && ./install.sh --prereqs_only
-RUN rm -rf /opt/nucleus
-
+RUN apt -y install --no-install-recommends python2.7-minimal python2.7  
+RUN apt-get install -y python-pip python-numpy
+RUN pip install future
 ENV PATH /root/bin:$PATH
-
-RUN	curl -L -O https://github.com/bazelbuild/bazel/releases/download/0.26.1/bazel-0.26.1-installer-linux-x86_64.sh \
- &&	chmod +x bazel-*.sh \
- && ./bazel-0.26.1-installer-linux-x86_64.sh --prefix=/usr/local \
- && rm bazel-0.26.1-installer-linux-x86_64.sh
-RUN apt-get -y install python-pip python-numpy
+ENV CLIF_FLAGS "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
+RUN git clone https://github.com/google/nucleus /opt/nucleus \
+ && cd /opt/nucleus && ./install.sh --prereqs_only \
+ && mv /opt /workspace
+RUN cd /workspace/nucleus \
+ && bazel build -c opt ${CLIF_FLAGS} nucleus/... \
+ && bazel build :licenses_zip
 CMD /bin/bash
