@@ -8,6 +8,7 @@ ENV PATH /root/bin:$PATH
 RUN git clone https://github.com/google/nucleus /opt/nucleus \
  && cd /opt/nucleus && ./install.sh --prereqs_only \
  && mv /opt /workspace
+RUN cp -r /workspace /home/gitpod
 ENV COPT_FLAGS "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
 #RUN cd /workspace/nucleus \
 # && bazel build -c opt ${COPT_FLAGS} nucleus/... \
