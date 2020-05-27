@@ -9,7 +9,7 @@ We use GitPod to host the demonstrator of the fAST tool chain.
 * https://github.com/google/protobuf
 * https://github.com/google/clif
 * https://github.com/google/nucleus
-* https://github.com/google/deepvariants
+* https://github.com/google/deepvariant
 
 ## Usage
 
