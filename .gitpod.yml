@@ -2,7 +2,6 @@ image:
   file: docker/Dockerfile
 tasks:
   - init: . .bashrc
-  - command: ./bin/install-nucleus.sh
 github:
   prebuilds:
     master: true
