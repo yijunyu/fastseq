@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM gitpod/workspace-full
 RUN apt-get -y update
 RUN apt-get install -y sudo git
 RUN apt -y install --no-install-recommends python2.7-minimal python2.7  
