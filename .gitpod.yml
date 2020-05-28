@@ -2,6 +2,7 @@ image:
   file: docker/Dockerfile
 tasks:
   - init: . .bashrc
+  - command: patch -p1 /home/gitpod/nucleus/third_party/clif.bzl < clif.bzl.patch && cd /home/gitpod/nucleus && bazel build -c opt ${COPT_FLAGS} nucleus/...
 github:
   prebuilds:
     master: true
