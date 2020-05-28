@@ -1,10 +1,7 @@
 FROM gitpod/workspace-full
 USER root
 RUN apt-get -y update
-RUN apt-get install -y sudo git
-RUN apt -y install --no-install-recommends python2.7-minimal python2.7  
-RUN apt-get install -y python2-pip python2-numpy
-RUN pip2 install future
+RUN apt-get install -y python3-pip python3-numpy
 ENV HOME /home/gitpod
 ENV PATH ${HOME}/bin:$PATH
 RUN git clone https://github.com/google/nucleus ${HOME}/nucleus \
