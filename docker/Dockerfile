@@ -1,4 +1,5 @@
 FROM gitpod/workspace-full
+USER root
 RUN apt-get -y update
 RUN apt-get install -y sudo git
 RUN apt -y install --no-install-recommends python2.7-minimal python2.7  
