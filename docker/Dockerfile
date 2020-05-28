@@ -9,7 +9,8 @@ ENV PATH ${HOME}/bin:$PATH
 RUN git clone https://github.com/google/nucleus ${HOME}/nucleus \
  && cd ${HOME}/nucleus && ./install.sh --prereqs_only
 ENV COPT_FLAGS "--copt=-msse4.1 --copt=-msse4.2 --copt=-mavx --copt=-O3"
-#RUN cd ${HOME}/nucleus \
-# && bazel build -c opt ${COPT_FLAGS} nucleus/... \
-# && bazel build :licenses_zip
+RUN sed -i -e 's/"--py3output"/#"--py3output"/g' ${HOME}/nucleus/third_party/clif.bzl
+RUN cd ${HOME}/nucleus \
+ && bazel build -c opt ${COPT_FLAGS} nucleus/... \
+ && bazel build :licenses_zip
 CMD /bin/bash
