@@ -1,0 +1,281 @@
+syntax="proto3";
+package fast;
+message Element {
+   int32 kind = 1;
+   bytes text = 2;
+   int32 pos = 3;
+   int32 length = 4;
+   repeated Element child = 5;
+   bytes tail = 6;
+   oneof extra {
+     Unit unit = 7;
+     Literal literal = 8;
+   }
+   message Unit {
+enum LanguageType {
+DUMMY = 0;
+ALL = 1;
+OO = 2;
+CXX = 3;
+C = 4;
+C_FAMILY = 5;
+JAVA = 6;
+CSHARP = 7;
+OBJECTIVE_C = 8;
+SMALI = 9;
+SOLIDITY = 10;
+COBOL85 = 11;
+PYTHON3 = 12;
+}
+    string filename = 1;
+    string revision = 2;
+ LanguageType language = 3;
+ int32 item = 4;
+   }
+   message Literal {
+enum LiteralType {
+dummy_type = 0;
+number_type = 1;
+char_type = 2;
+string_type = 3;
+boolean_type = 4;
+null_type = 5;
+}
+    LiteralType type = 1;
+   }
+   int32 line = 9;
+   int32 column = 10;
+   float label = 11;
+   enum DiffType {
+     MATCHED = 0;
+     ADDED = 1;
+     DELETED = 2;
+     CHANGED_FROM = 3;
+     CHANGED_TO = 4;
+   }
+   DiffType change = 12;
+   bool keep = 13;
+   int32 id = 14;
+}
+message Delta {
+   string src = 1;
+   string dst = 2;
+   repeated Diff diff = 3;
+   message Diff {
+ enum DeltaType {
+     MATCH = 0;
+     ADD = 1;
+     DEL = 2;
+     MOVE = 3;
+     UPDATE = 4;
+        }
+ DeltaType type = 1;
+    oneof delta {
+  Match match = 2;
+  Add add = 3;
+  Del del = 4;
+  Move move = 5;
+  Update update = 6;
+ }
+ message Match {
+  int32 src = 1;
+  int32 dst = 2;
+ }
+ message Add {
+  int32 src = 1;
+  int32 dst = 2;
+  int32 position = 3;
+ }
+ message Del {
+  int32 src = 1;
+ }
+ message Move {
+  int32 src = 1;
+  int32 dst = 2;
+  int32 position = 3;
+ }
+ message Update {
+  int32 src = 1;
+  int32 dst = 2;
+ }
+   }
+}
+message Pairs {
+   message Pair {
+ enum CloneType {
+   MAYBE = 0;
+   YES = 1;
+   NO = 2;
+ }
+ PairsDiff left = 1;
+ PairsDiff right = 2;
+ CloneType type = 3;
+ message PairsDiff {
+  string project = 1;
+  int32 left_line = 2;
+  int32 left_column = 3;
+  int32 right_line = 4;
+  int32 right_column = 5;
+  Element old_code = 6;
+  Element new_code = 7;
+  string hash = 8;
+  Slices slices = 9;
+ }
+   }
+   repeated Pair pair = 1;
+}
+message Log {
+ message Commit {
+string id = 1;
+bytes msg = 2;
+bytes author_name = 3;
+bytes author_email = 4;
+int64 author_time = 5;
+bytes committer_name = 6;
+bytes committer_email = 7;
+int64 committer_time = 8;
+message LogDiff {
+string a = 1;
+string b = 2;
+bool is_new = 3;
+string is_code = 4;
+string index_from = 5;
+string index_to = 6;
+string mode = 7;
+message Hunk {
+int32 from_lineno = 1;
+int32 from_column = 2;
+int32 to_lineno = 3;
+int32 to_column = 4;
+string context = 5;
+message ModLine {
+bytes line = 1;
+bool is_add = 2;
+bool is_del = 3;
+}
+repeated Element element = 6;
+repeated Graph graph = 7;
+repeated ModLine mod = 8;
+Slices slice = 9;
+}
+repeated Hunk hunk = 8;
+}
+repeated LogDiff diff = 9;
+Slices slice = 10;
+ }
+ message Author {
+ int32 id = 1;
+ bytes name = 2;
+ string email = 3;
+ }
+ repeated Commit commit = 1;
+ repeated Author author = 2;
+}
+message Slices {
+    message Slice {
+ enum ChangeType {
+  UNCHANGED = 0;
+  ADD = 1;
+  DEL = 2;
+ }
+ message SourceFile {
+  message Function {
+   message Variable {
+    message Position {
+     string location = 1;
+     ChangeType type = 2;
+     string delta_location = 5;
+    }
+    message FunctionDecl {
+     string name = 1;
+     string location = 2;
+    }
+    string name = 1;
+    Position pos = 2;
+    ChangeType type = 3;
+    repeated Position defn = 4;
+    repeated Position use = 5;
+    repeated string dvar = 6;
+    repeated string alias = 7;
+    repeated FunctionDecl cfunc = 8;
+   }
+   repeated Variable variable = 1;
+   string name = 2;
+   ChangeType type = 3;
+  }
+  repeated Function function = 1;
+  string name = 2;
+  ChangeType type = 3;
+ }
+ repeated SourceFile file = 1;
+ string hash = 2;
+      }
+      repeated Slice slice = 1;
+}
+message Bugs {
+      message Bug {
+        message Info {
+  bytes summary = 1;
+  bytes description = 2;
+ }
+ bytes id = 1;
+ bytes opendate = 2;
+ bytes fixdate = 3;
+ Info buginfo = 4;
+ repeated bytes fixed_file = 5;
+      }
+      string repository = 1;
+      repeated Bug bug = 2;
+}
+message Graph {
+  message Edge {
+ int32 node1 = 1;
+ int32 node2 = 2;
+  }
+  message NodeLabel {
+ int32 node = 1;
+ string label = 2;
+  }
+  message NodeType {
+ int32 node = 1;
+ string type = 2;
+  }
+  message ContextEdges {
+ repeated Edge nextToken = 1;
+ repeated Edge child = 2;
+ repeated Edge lastLexicalUse = 3;
+ repeated Edge lastUse = 4;
+ repeated Edge lastWrite = 5;
+ repeated Edge returnsTo = 6;
+ repeated Edge computesFrom = 7;
+  }
+  message ContextGraph {
+   ContextEdges edges = 1;
+   repeated NodeLabel nodeLabel = 2;
+   repeated NodeType nodeType = 3;
+  }
+  message SymbolCandidate {
+ int32 symbolDummyNode = 1;
+ string symbolName = 2;
+ bool isCorrect = 3;
+  }
+  message TreeUnit {
+ string filename = 1;
+ int32 slotTokenIdx = 2;
+ ContextGraph graph = 3;
+ int32 SlotDummyNode = 4;
+ repeated SymbolCandidate symbolCandidate = 5;
+  }
+  repeated TreeUnit unit = 1;
+}
+message Data {
+ oneof RecordType {
+ Element element = 1;
+ Log log = 2;
+ Delta delta = 3;
+ Pairs pairs = 4;
+ Slices slices = 5;
+ Bugs bugs = 6;
+ Graph graph = 7;
+ }
+}

@@ -1,0 +1,3 @@
+service:
+  output_format: "text"
+  other_output_format: "xml"

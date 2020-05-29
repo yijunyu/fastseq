@@ -18,4 +18,6 @@
 #RUN cd ${HOME}/fastseq/nucleus \
 # && bazel build -c opt ${COPT_FLAGS} nucleus/...
 FROM yijun/nucleus
+RUN apt -y install vim
+WORKDIR /home/gitpod/fastseq/nucleus
 CMD /bin/bash
