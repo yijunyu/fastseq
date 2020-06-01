@@ -12,6 +12,9 @@ function wdownload {
 	if [ ! -f NA12878_calls.vcf.gz.tbi ]; then
 		wget ftp://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/release/NA12878_HG001/latest/GRCh37/HG001_GRCh37_GIAB_highconf_CG-IllFB-IllGATKHC-Ion-10X-SOLID_CHROM1-X_v.3.3.2_highconf_PGandRTGphasetransfer.vcf.gz.tbi -O NA12878_calls.vcf.gz.tbi
 	fi
+	if [ ! -f test_samples.vcf ]; then
+		wget https://raw.githubusercontent.com/google/nucleus/master/nucleus/testdata/test_samples.vcf
+	fi
 }
 export -f wdownload
 cd /host
