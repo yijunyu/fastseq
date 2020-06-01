@@ -17,7 +17,7 @@
 #RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 10
 #RUN cd ${HOME}/fastseq/nucleus \
 # && bazel build -c opt ${COPT_FLAGS} nucleus/...
-FROM yijun/nucleus
+FROM yijun/nucleus:py3
 RUN apt -y install vim
 RUN apt-get -y install ipython ipython-notebook
 RUN pip3 install jupyter
