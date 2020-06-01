@@ -1,0 +1,9 @@
+./b
+#docker run -v $(PWD):/host -p 8080:8080 -it nucleus bash -c "jupyter notebook --ip=0.0.0.0 --port=8080 --allow-root --no-browser"
+if [ ! -f dna_sequencing_error_correction.txt ]; then
+	docker run -v $(PWD):/host -p 8080:8080 -it nucleus bash -c "jupyter nbconvert --to script nucleus/examples/dna_sequencing_error_correction.ipynb && mv nucleus/examples/dna_sequencing_error_correction.txt /host"
+fi
+if [ -f t.sh ]; then
+	docker run -v $(PWD):/host -p 8080:8080 -it nucleus bash -c "bash /host/t.sh"
+fi
+docker run -v $(PWD):/host -p 8080:8080 -it nucleus bash 
