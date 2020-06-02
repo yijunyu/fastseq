@@ -17,4 +17,5 @@ EOF
 chmod +x /workspace/bin/push
 export PATH="/home/gitpod/bin:$PATH"
 export PATH="/home/gitpod/nucleus/usr/local/clif/bin:$PATH"
+export PATH="/workspace/bin:$PATH"
 export LD_LIBRARY_PATH="/home/gitpod/nucleus/usr/local/lib"
