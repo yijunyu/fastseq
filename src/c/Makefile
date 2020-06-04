@@ -30,6 +30,8 @@ fast_generated.go: fast.fbs
 	sed -i -e 's/fast___Slices___Slice___SourceFile___Function___Variable_\.//g' $@
 	sed -i -e 's/fast___Graph_\.//g' $@
 	sed -i -e 's/fast_\.//g' $@
+	sed -i -e 's/fast___Element___Unit_.LanguageType/LanguageType/g' $@
+	sed -i -e 's/fast___Element___Literal_.LiteralType/LiteralType/g' $@
 
 targets += fast.fbs fast.fbs-e
 fast.fbs: fast.proto
