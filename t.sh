@@ -17,7 +17,6 @@ function wdownload {
 	fi
 }
 export -f wdownload
-cd /host
 gdownload NA12878_sliced.bam
 gdownload NA12878_sliced.bam.bai
 gdownload hs37d5.fa.gz
