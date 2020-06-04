@@ -1,0 +1,11 @@
+mkdir -p .docker
+cat > .docker/Dockerfile <<EOF
+FROM alpine
+RUN apk add file
+CMD [ "./c", "examples/BinaryDigit.c", "t.fbs" ]
+EOF
+docker build -t c .docker
+rm -f t.fbs t.xml
+docker run -v $(pwd):/host -w /host -it c
+docker run -v $(pwd):/host -w /host --entrypoint /bin/sh -it c -c "cd /host; ./c t.fbs > t.xml"
+cat t.xml
