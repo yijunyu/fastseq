@@ -6,5 +6,6 @@ fi
 if [ -f t.sh -a ! -f hs37d5.fa.gz ]; then
 	docker run -v $(PWD):/host -p 8080:8080 -it nucleus bash -c "bash /host/t.sh"
 fi
+#docker run -v $(PWD):/host -w /host -p 8080:8080 -it nucleus bash
 #docker run -v $(PWD):/host -p 8080:8080 -it yijun/nucleus:py3 bash 
-docker run -v $(PWD):/host -p 8080:8080 -it yijun/nucleus bash 
+docker run -v $(PWD):/host -w /host -p 8080:8080 -it nucleus bash -c "./time.sh"

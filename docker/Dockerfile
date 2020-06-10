@@ -10,6 +10,7 @@ RUN apt-get -y update && apt-get -y install google-cloud-sdk
 RUN apt-get -y install wget
 RUN pip3 install google-nucleus
 RUN pip3 install tensorflow
+RUN apt-get -y install time
 EXPOSE 8080
 WORKDIR /home/gitpod/fastseq/nucleus
 CMD /bin/bash
