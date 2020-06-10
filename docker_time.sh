@@ -1,0 +1,5 @@
+docker run -v $(PWD):/host -w /host -it nucleus bash -c "bash t.sh"
+/usr/bin/time docker run -v $(PWD):/host -w /host -it nucleus bash -c "python3 test_vcf.py"
+/usr/bin/time docker run -v $(PWD):/host -w /host -it nucleus bash -c "python3 test_fasta.py"
+/usr/bin/time docker run -v $(PWD):/host -w /host -it nucleus bash -c "python3 test_fastq.py"
+/usr/bin/time docker run -v $(PWD):/host -w /host -it nucleus bash -c "python3 test_bam.py"
